@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+        "HTTP_Request_to_Chrome": {
+            "inputs": {
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "method": "POST",
+                "uri": "http://127.0.0.1:9222/json",
+                "body": {                    
+                    "id": 1,
+                    "method": "Network.enable",
+                    "params": {}
+                }
+            },
+            "runAfter": {},
+            "type": "Http"
+        }
+    },
+    "triggers": {
+        "When_a_HTTP_request_is_received": {
+            "inputs": {
+                "schema": {
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "Request"
+        }
+    },
+    "outputs": {},    
+}
+
+
