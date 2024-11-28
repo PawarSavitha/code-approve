@@ -1,0 +1,39 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Send_an_HTTP_request_to_Chrome": {
+                "inputs": {
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "method": "POST",  // Depending on your Chrome server, this could be GET, POST etc.
+                    "uri": "http://your-chrome-endpoint.com/api", // Replace with the actual endpoint
+                    "body": {
+                        // Define the body payload according to the Chrome API requirements
+                    }
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "When_a_HTTP_request_is_received": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "exampleProperty": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "Request"
+                "kind": "HTTP"
+            }
+        }
+    },
+    "parameters": {
+    }
+}
