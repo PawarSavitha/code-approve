@@ -1,0 +1,43 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Send_HTTP_Request": {
+                "inputs": {
+                    "method": "POST",
+                    "uri": "https://your-chrome-endpoint-or-service-endpoint",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "message": "@triggerBody()"
+                    }
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "manualTrigger": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "message": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "Request"
+            }
+        }
+    },
+    "kind": "Stateful",
+    "metadata": {
+        "workflowEntityVersion": "1.0.0.0"
+    }
+}
