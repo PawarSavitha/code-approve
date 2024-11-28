@@ -29,14 +29,13 @@
                         "type": "object"
                     }
                 },
-                "type": "Request"
+                "type": "Request",
+                "Kind": "HTTP"
             }
         }
     },
     "parameters": {
-        "$connections": {
-            "value": {}
-        }
+       
     }
 }
 
