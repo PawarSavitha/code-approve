@@ -1,0 +1,41 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP_Request_To_Chrome": {
+                "inputs": {
+                    "method": "GET",
+                    "uri": "https://www.google.com/chrome/"
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "When_a_HTTP_request_is_received": {
+                "inputs": {},
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {},
+    "triggers": {
+        "When_a_HTTP_request_is_received": {
+            "inputs": {}
+        }
+    },
+    "actions": {
+        "HTTP_Request_To_Chrome": {
+            "inputs": {
+                "method": "GET",
+                "uri": "https://www.google.com/chrome/"
+            }
+        }
+    }
+}
+ "logicAppDetails": {
+    "name": "promptlogicapp",
+    "resourceGroup": "CustomAppsIntServices",
+    "subscription": "047ae087-7d35-4c57-8fe9-7a442cc9cf16"
+  }
