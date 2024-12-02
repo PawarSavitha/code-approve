@@ -44,11 +44,6 @@
             }
         }
     },
-    "parameters": {
-        "$connections": {
-            "value": {}
-        }
-    }
 }
  "logicAppDetails": {
     "name": "promptlogicapp",
