@@ -1,0 +1,36 @@
+LogicAppDetails:{
+  "logicAppName": "promptlogicapp",
+  "resourceGroup": "CustomAppsIntServices",
+  "subscription": "047ae087-7d35-4c57-8fe9-7a442cc9cf16", 
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP_Request_to_Chrome": {
+                "inputs": {
+                    "method": "POST",
+                    "uri": "http://localhost:9222/json/new?url=https://www.example.com"
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "When_a_HTTP_request_is_received": {
+                "inputs": {},
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {},
+    "triggers": {
+        "manual": {
+            "kind": "Http",
+            "inputs": {
+                "schema": {}
+            }
+        }
+    }
+}
+}
