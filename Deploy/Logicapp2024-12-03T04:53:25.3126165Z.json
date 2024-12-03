@@ -1,0 +1,64 @@
+
+  "logicAppName": "Tueslogicapp",
+  "resourceGroup": "CustomAppsIntServices",
+  "subscription": "047ae087-7d35-4c57-8fe9-7a442cc9cf16", 
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Send_HTTP_Request_to_Chrome": {
+                "inputs": {
+                    "method": "POST",
+                    "uri": "http://<CHROME_INSTANCE>:<PORT>/json/new",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "url": "http://example.com"
+                    }
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "When_an_HTTP_request_is_received": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "url": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["url"],
+                        "type": "object"
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {}
+}
+```
+
+### Explanation:
+1. **Trigger: "When_an_HTTP_request_is_received"**:
+   - This sets up the trigger to start the logic app when an HTTP request is made.
+   - The `schema` defines the expected structure of the incoming request, which should include a `url` string.
+
+2. **Action: "Send_HTTP_Request_to_Chrome"**:
+   - This action is triggered once the HTTP request is received.
+   - It sends an HTTP POST request to the Chrome instance on the specified URL (replace `<CHROME_INSTANCE>:<PORT>` with the actual instance and port for your Chrome DevTools Protocol interface).
+   - The request sends a JSON body with a single `url` parameter, pointing to the desired URL that you want Chrome to open.
+
+### Note:
+- Ensure you replace `http://<CHROME_INSTANCE>:<PORT>/json/new` with the actual address.
+- The URL (`http://example.com`) in the body should be dynamically replaced if needed. For a dynamic URL based on incoming request data, you can modify the JSON like this:
+
+```json
+"body": {
+    "url": "@{triggerBody()['url']}"
+}
+
