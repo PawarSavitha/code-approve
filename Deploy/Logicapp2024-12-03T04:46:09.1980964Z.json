@@ -1,0 +1,56 @@
+LogicAppDetails:{
+  "logicAppName": "Tueslogicapp",
+  "resourceGroup": "CustomAppsIntServices",
+  "subscription": "047ae087-7d35-4c57-8fe9-7a442cc9cf16", 
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP_Request_to_Chrome": {
+                "inputs": {
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "method": "POST",
+                    "uri": "https://some-endpoint-related-to-chrome.com/api/resource",   // Example endpoint
+                    "body": {
+                        "exampleKey": "exampleValue"
+                    }
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "When_an_HTTP_request_is_received": {
+                "type": "Request",
+                "kind": "Http",
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "exampleKey": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "outputs": {}
+    },
+    "parameters": {
+        "$connections": {
+            "defaultValue": {},
+            "type": "Object"
+        }
+    },
+    "runFrequency": {
+        "interval": 1,
+        "unit": "Minute"
+    }
+}
+}
+
+
+
