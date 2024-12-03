@@ -5,45 +5,52 @@
 {
     "definition": {
         "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-        "actions": {
-            "Send_HTTP_Request_to_Chrome": {
-                "inputs": {
-                    "method": "POST",
-                    "uri": "https://YOUR_CHROME_ENDPOINT",
-                    "headers": {
-                        "Content-Type": "application/json"
-                    },
-                    "body": {
-                        "message": "This is a notification from Azure Logic Apps"
-                    }
-                },
-                "runAfter": {},
-                "type": "Http"
-            }
-        },
         "triggers": {
             "When_an_HTTP_request_is_received": {
                 "type": "Request",
                 "kind": "Http",
                 "inputs": {
                     "schema": {
-                        "type": "object",
                         "properties": {
+                            "url": {
+                                "type": "string"
+                            },
                             "message": {
                                 "type": "string"
                             }
-                        }
+                        },
+                        "required": [
+                            "url",
+                            "message"
+                        ],
+                        "type": "object"
                     }
                 }
             }
         },
-        "outputs": {}
+        "actions": {
+            "Send_an_HTTP_request_to_Chrome": {
+                "runAfter": {},
+                "type": "Http",
+                "inputs": {
+                    "uri": "https://www.google.com",
+                    "method": "GET",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
     },
-    "kind": "Stateful"
+    "parameters": {
+        "$connections": {
+            "value": {}
+        }
+    }
 }
-```
-
-Explanation:
-1. `triggers` section contains the `When_an_HTTP_request_is_received` trigger that expects an HTTP request. The `schema` defines the expected format of the request body. In this case, it should contain a `message` field of type `string`.
-2. `actions` section contains the `Send_HTTP_Request_to_Chrome` action which executes after the trigger. It sends an HTTP POST request to the specified `YOUR_CHROME_ENDPOINT` with a content type of `application/json`. The message body of the HTTP POST request is defined as `{"message": "This is a notification from Azure Logic Apps"}
-
