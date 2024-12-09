@@ -1,0 +1,52 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Send_HTTP_Request_to_Chrome": {
+                "inputs": {
+                    "method": "POST",  // or GET or any other HTTP method
+                    "uri": "YOUR_CHROME_ENDPOINT",  // Replace with the actual endpoint
+                    "headers": {
+                        // Add any necessary headers here
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        // Add any necessary body content here
+                        "key": "value"  // replace with the actual body content required by your endpoint
+                    }
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "method": "POST",  // or GET or any other HTTP method
+                    "schema": {
+                        // Define any request schema here if necessary
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "key" 
+                        ]
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        },
+        "contentVersion": "1.0.0.0"
+    },
+    "location": "YOUR_LOGIC_APP_LOCATION",  
+  "properties": {
+    "definition": "[CONVERT_TO_BASE64('{}')]",
+    "parameters": {},
+    "tags": {}
+  }
+
+}
