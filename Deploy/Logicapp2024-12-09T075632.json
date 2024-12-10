@@ -1,0 +1,43 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "Send_HTTP_Request": {
+        "inputs": {
+          "method": "POST",
+          "uri": "https://www.google.com",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": "@triggerBody()"
+        },
+        "runAfter": {},
+        "type": "Http"
+      }
+    },
+    "triggers": {
+      "When_an_HTTP_request_is_received": {
+        "inputs": {
+          "schema": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "message"
+            ],
+            "type": "object"
+          }
+        },
+        "type": "Request"
+      }
+    },
+    "outputs": {}
+  },
+  "parameters": {}
+
